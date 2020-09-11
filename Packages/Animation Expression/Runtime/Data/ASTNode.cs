@@ -760,6 +760,25 @@ namespace AnimationExpression.Data
         }
     }
 
+    public class Then : TweenNode
+    {
+        public readonly TweenNode Expr;
+        public readonly ASTNode Body;
+
+        public Then(TweenNode expr, ASTNode body)
+        {
+            Expr = expr;
+            Body = body;
+        }
+
+        public override Tween EvaluateAsTween(EvaluateContext ctx)
+        {
+            var tween = Expr.EvaluateAsTween(ctx);
+            tween.Then(() => Body.Evaluate(ctx));
+            return tween;
+        }
+    }
+
     public class ConstantNumber : ExpressionNode
     {
         public readonly float Value;

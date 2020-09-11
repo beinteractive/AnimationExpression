@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AnimationExpression.Data;
+using UnityEngine;
 
 namespace AnimationExpression.Compiler
 {
@@ -384,41 +385,59 @@ namespace AnimationExpression.Compiler
                                 SyntaxError("Missing '(' after method access");
                             }
 
-                            var args = ParseArguments();
-                            
-                            switch (m.Value)
+                            if (m.Value == "Then")
                             {
-                                case "From":
-                                {
-                                    t = new From(t, args, false);
-                                    break;
-                                }
-
-                                case "FromRelative":
-                                {
-                                    t = new From(t, args, true);
-                                    break;
-                                }
-
-                                case "Delay":
-                                {
-                                    t = new Delay(t, args);
-                                    break;
-                                }
+                                NextToken();
                                 
-                                case string name when name.StartsWith("Ease"):
+                                var body = ParseStatement();
+
+                                if (!IsSymbol(')'))
                                 {
-                                    if (!Ease.IsValidName(name))
+                                    SyntaxError("Missing ')' after Then body");
+                                }
+
+                                NextToken();
+                                
+                                t = new Then(t, body);
+                            }
+                            else
+                            {
+                                var args = ParseArguments();
+                            
+                                switch (m.Value)
+                                {
+                                    case "From":
                                     {
-                                        SyntaxError($"{name} is not valid easing name");
+                                        t = new From(t, args, false);
+                                        break;
                                     }
-                                    t = new Ease(name, t, args);
-                                    break;
-                                }
+
+                                    case "FromRelative":
+                                    {
+                                        t = new From(t, args, true);
+                                        break;
+                                    }
+
+                                    case "Delay":
+                                    {
+                                        t = new Delay(t, args);
+                                        break;
+                                    }
                                 
-                                default:
-                                    SyntaxError($"{m.Value} is not valid method name");
-                                    break;
+                                    case string name when name.StartsWith("Ease"):
+                                    {
+                                        if (!Ease.IsValidName(name))
+                                        {
+                                            SyntaxError($"{name} is not valid easing name");
+                                        }
+                                        t = new Ease(name, t, args);
+                                        break;
+                                    }
+                                
+                                    default:
+                                        SyntaxError($"{m.Value} is not valid method name");
+                                        break;
+                                }
                             }
                         }
                         else
