@@ -30,7 +30,9 @@ Y(OkButton, Duration).FromRelative(-100f).EaseOutQuart().Animate(Animate);
 Scale(OkButton, Duration).From(0f).Animate(Animate).EaseOutBack().Then({
   Active(CancelButton, true);
   if (Flag) {
-    Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f).Animate(Animate);
+    Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f).Animate(Animate).Then(
+        Callback();
+    );
   }
 });
 ```
