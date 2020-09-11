@@ -18,5 +18,5 @@ MonoBehaviour:
     Value: 0.5
   - Name: Flag
     Value: 1
-  Expression: "Scale(OkButton, Duration).From(0f).EaseOutBack();\nif (Flag) {\n 
-    Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f);\n}"
+  Expression: "Y(OkButton, Duration).FromRelative(-100f).EaseOutQuart();\nScale(OkButton,
+    Duration).From(0f).EaseOutBack();\nif (Flag) {\n  Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f);\n}"

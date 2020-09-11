@@ -364,10 +364,84 @@ namespace AnimationExpression.Data
         
         private static readonly Dictionary<string, Func<EvaluateContext, Arguments, Tween>> Factory = new Dictionary<string, Func<EvaluateContext, Arguments, Tween>>
         {
+            { "A", CreateTweenVec1<TweenA> },
+            { "Alpha", CreateTweenVec1<TweenA> },
+            { "C", CreateTweenVec3<TweenC> },
+            { "Color", CreateTweenVec3<TweenC> },
+            { "CA", CreateTweenVec4<TweenCA> },
+            { "ColorAndAlpha", CreateTweenVec4<TweenCA> },
+            { "FillAmount", CreateTweenVec1<TweenFillAmount> },
+            { "P", CreateTweenVec2<TweenXY> },
+            { "Position", CreateTweenVec2<TweenXY> },
+            { "P3", CreateTweenVec3<TweenXYZ> },
+            { "Position3D", CreateTweenVec3<TweenXYZ> },
+            { "R", CreateTweenVec1<TweenRZ> },
+            { "Rotation", CreateTweenVec1<TweenRZ> },
+            { "R3", CreateTweenVec3<TweenRXYZ> },
+            { "Rotation3D", CreateTweenVec3<TweenRXYZ> },
+            { "RX", CreateTweenVec1<TweenRX> },
+            { "RotationX", CreateTweenVec1<TweenRX> },
+            { "RY", CreateTweenVec1<TweenRY> },
+            { "RotationY", CreateTweenVec1<TweenRY> },
+            { "RZ", CreateTweenVec1<TweenRX> },
+            { "RotationZ", CreateTweenVec1<TweenRZ> },
+            { "RXY", CreateTweenVec2<TweenRXY> },
+            { "RotationXY", CreateTweenVec2<TweenRXY> },
+            { "RXZ", CreateTweenVec2<TweenRXZ> },
+            { "RotationXZ", CreateTweenVec2<TweenRXZ> },
+            { "RYZ", CreateTweenVec2<TweenRYZ> },
+            { "RotationYZ", CreateTweenVec2<TweenRYZ> },
+            { "RXYZ", CreateTweenVec3<TweenRXYZ> },
+            { "RotationXYZ", CreateTweenVec3<TweenRXYZ> },
             { "S", CreateTweenVec2<TweenSXY> },
-            { "SXY", CreateTweenVec2<TweenSXY> },
             { "Scale", CreateTweenVec2<TweenSXY> },
+            { "S3", CreateTweenVec3<TweenSXYZ> },
+            { "Scale3D", CreateTweenVec3<TweenSXYZ> },
+            { "SX", CreateTweenVec1<TweenSX> },
+            { "ScaleX", CreateTweenVec1<TweenSX> },
+            { "SY", CreateTweenVec1<TweenSY> },
+            { "ScaleY", CreateTweenVec1<TweenSY> },
+            { "SZ", CreateTweenVec1<TweenSX> },
+            { "ScaleZ", CreateTweenVec1<TweenSZ> },
+            { "SXY", CreateTweenVec2<TweenSXY> },
+            { "ScaleXY", CreateTweenVec2<TweenSXY> },
+            { "SXZ", CreateTweenVec2<TweenSXZ> },
+            { "ScaleXZ", CreateTweenVec2<TweenSXZ> },
+            { "SYZ", CreateTweenVec2<TweenSYZ> },
+            { "ScaleYZ", CreateTweenVec2<TweenSYZ> },
+            { "SXYZ", CreateTweenVec3<TweenSXYZ> },
+            { "ScaleXYZ", CreateTweenVec3<TweenSXYZ> },
+            { "X", CreateTweenVec1<TweenX> },
+            { "PositionX", CreateTweenVec1<TweenX> },
+            { "Y", CreateTweenVec1<TweenY> },
+            { "PositionY", CreateTweenVec1<TweenY> },
+            { "Z", CreateTweenVec1<TweenX> },
+            { "PositionZ", CreateTweenVec1<TweenZ> },
+            { "XY", CreateTweenVec2<TweenXY> },
+            { "PositionXY", CreateTweenVec2<TweenXY> },
+            { "XZ", CreateTweenVec2<TweenXZ> },
+            { "PositionXZ", CreateTweenVec2<TweenXZ> },
+            { "YZ", CreateTweenVec2<TweenYZ> },
+            { "PositionYZ", CreateTweenVec2<TweenYZ> },
+            { "XYZ", CreateTweenVec3<TweenXYZ> },
+            { "PositionXYZ", CreateTweenVec3<TweenXYZ> },
         };
+
+        private static Tween CreateTweenVec1<T>(EvaluateContext ctx, Arguments args) where T : TweenVec1, new()
+        {
+            var g = ((Variable) args.Args[0]).GetGameObject(ctx);
+            var d = args.Args[1].EvaluateAsNumber(ctx);
+            
+            switch (args.Args.Count)
+            {
+                case 2:
+                {
+                    return TweenVec1.Add<T>(g, d);
+                }
+                default:
+                    throw new ArgumentException("Invalid size of arguments");
+            }
+        }
 
         private static Tween CreateTweenVec2<T>(EvaluateContext ctx, Arguments args) where T : TweenVec2, new()
         {
@@ -390,6 +464,63 @@ namespace AnimationExpression.Data
                     var v1 = args.Args[2].EvaluateAsNumber(ctx);
                     var v2 = args.Args[3].EvaluateAsNumber(ctx);
                     return TweenVec2.Add<T>(g, d, v1, v2);
+                }
+                default:
+                    throw new ArgumentException("Invalid size of arguments");
+            }
+        }
+
+        private static Tween CreateTweenVec3<T>(EvaluateContext ctx, Arguments args) where T : TweenVec3, new()
+        {
+            var g = ((Variable) args.Args[0]).GetGameObject(ctx);
+            var d = args.Args[1].EvaluateAsNumber(ctx);
+            
+            switch (args.Args.Count)
+            {
+                case 2:
+                {
+                    return TweenVec3.Add<T>(g, d);
+                }
+                case 3:
+                {
+                    var v = args.Args[2].EvaluateAsNumber(ctx);
+                    return TweenVec3.Add<T>(g, d, v, v, v);
+                }
+                case 5:
+                {
+                    var v1 = args.Args[2].EvaluateAsNumber(ctx);
+                    var v2 = args.Args[3].EvaluateAsNumber(ctx);
+                    var v3 = args.Args[4].EvaluateAsNumber(ctx);
+                    return TweenVec3.Add<T>(g, d, v1, v2, v3);
+                }
+                default:
+                    throw new ArgumentException("Invalid size of arguments");
+            }
+        }
+
+        private static Tween CreateTweenVec4<T>(EvaluateContext ctx, Arguments args) where T : TweenVec4, new()
+        {
+            var g = ((Variable) args.Args[0]).GetGameObject(ctx);
+            var d = args.Args[1].EvaluateAsNumber(ctx);
+            
+            switch (args.Args.Count)
+            {
+                case 2:
+                {
+                    return TweenVec4.Add<T>(g, d);
+                }
+                case 3:
+                {
+                    var v = args.Args[2].EvaluateAsNumber(ctx);
+                    return TweenVec4.Add<T>(g, d, v, v, v, v);
+                }
+                case 6:
+                {
+                    var v1 = args.Args[2].EvaluateAsNumber(ctx);
+                    var v2 = args.Args[3].EvaluateAsNumber(ctx);
+                    var v3 = args.Args[4].EvaluateAsNumber(ctx);
+                    var v4 = args.Args[5].EvaluateAsNumber(ctx);
+                    return TweenVec4.Add<T>(g, d, v1, v2, v3, v4);
                 }
                 default:
                     throw new ArgumentException("Invalid size of arguments");
