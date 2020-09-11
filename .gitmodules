@@ -1,0 +1,4 @@
+[submodule "Packages/Uween"]
+	path = Packages/Uween
+	url = git@github.com:beinteractive/Uween.git
+	branch = v2
