@@ -56,6 +56,13 @@
         "com.unity.modules.ui": "1.0.0"
       }
     },
+    "dev.kyubuns.ankuchen": {
+      "version": "https://git@github.com/kyubuns/AnKuchen.git?path=Unity/Assets/AnKuchen",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6f413c6b95fd041562a346c88568d672bf3b0109"
+    },
     "jp.beinteractive.uween": {
       "version": "file:Uween",
       "depth": 0,
