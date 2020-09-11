@@ -406,11 +406,13 @@ namespace AnimationExpression.Data
     {
         public readonly TweenNode Expr;
         public readonly Arguments Args;
+        public readonly bool Relative;
 
-        public From(TweenNode expr, Arguments args)
+        public From(TweenNode expr, Arguments args, bool relative)
         {
             Expr = expr;
             Args = args;
+            Relative = relative;
         }
 
         public override Tween EvaluateAsTween(EvaluateContext ctx)
@@ -419,15 +421,95 @@ namespace AnimationExpression.Data
             
             switch (tween)
             {
-                case TweenVec2 tv2:
+                case TweenVec1 t:
+                {
+                    if (Relative)
+                    {
+                        t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx));
+                    }
+                    else
+                    {
+                        t.From(Args.Args[0].EvaluateAsNumber(ctx));
+                    }
+                    break;
+                }
+                case TweenVec2 t:
                 {
                     switch (Args.Args.Count)
                     {
                         case 1:
-                            tv2.From(Args.Args[0].EvaluateAsNumber(ctx));
+                            if (Relative)
+                            {
+                                t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx));
+                            }
+                            else
+                            {
+                                t.From(Args.Args[0].EvaluateAsNumber(ctx));
+                            }
                             break;
-                        case 2:
-                            tv2.From(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx));
+                        default:
+                            if (Relative)
+                            {
+                                t.From(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx));
+                            }
+                            else
+                            {
+                                t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx));
+                            }
+                            break;
+                    }
+                    break;
+                }
+                case TweenVec3 t:
+                {
+                    switch (Args.Args.Count)
+                    {
+                        case 1:
+                            if (Relative)
+                            {
+                                t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx));
+                            }
+                            else
+                            {
+                                t.From(Args.Args[0].EvaluateAsNumber(ctx));
+                            }
+                            break;
+                        default:
+                            if (Relative)
+                            {
+                                t.From(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx), Args.Args[2].EvaluateAsNumber(ctx));
+                            }
+                            else
+                            {
+                                t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx), Args.Args[2].EvaluateAsNumber(ctx));
+                            }
+                            break;
+                    }
+                    break;
+                }
+                case TweenVec4 t:
+                {
+                    switch (Args.Args.Count)
+                    {
+                        case 1:
+                            if (Relative)
+                            {
+                                t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx));
+                            }
+                            else
+                            {
+                                t.From(Args.Args[0].EvaluateAsNumber(ctx));
+                            }
+                            break;
+                        default:
+                            if (Relative)
+                            {
+                                t.From(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx), Args.Args[2].EvaluateAsNumber(ctx), Args.Args[3].EvaluateAsNumber(ctx));
+                            }
+                            else
+                            {
+                                t.FromRelative(Args.Args[0].EvaluateAsNumber(ctx), Args.Args[1].EvaluateAsNumber(ctx), Args.Args[2].EvaluateAsNumber(ctx), Args.Args[3].EvaluateAsNumber(ctx));
+                            }
                             break;
                     }
                     break;

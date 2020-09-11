@@ -390,7 +390,13 @@ namespace AnimationExpression.Compiler
                             {
                                 case "From":
                                 {
-                                    t = new From(t, args);
+                                    t = new From(t, args, false);
+                                    break;
+                                }
+
+                                case "FromRelative":
+                                {
+                                    t = new From(t, args, true);
                                     break;
                                 }
 
