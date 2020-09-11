@@ -391,6 +391,11 @@ namespace AnimationExpression.Compiler
                         var args = ParseArguments();
                         return new SetActive(args);
                     }
+                    else if (v.Value == "Callback")
+                    {
+                        ParseArguments();
+                        return new Callback();
+                    }
                     else
                     {
                         SyntaxError($"{v.Value} is not valid tween name");

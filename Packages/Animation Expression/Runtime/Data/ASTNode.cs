@@ -826,6 +826,24 @@ namespace AnimationExpression.Data
         }
     }
 
+    public class Callback : ExpressionNode
+    {
+        public override void Evaluate(EvaluateContext ctx)
+        {
+            ctx.Callback();
+        }
+
+        public override float EvaluateAsNumber(EvaluateContext ctx)
+        {
+            return 0f;
+        }
+
+        public override bool EvaluateAsBool(EvaluateContext ctx)
+        {
+            return true;
+        }
+    }
+
     public class ConstantNumber : ExpressionNode
     {
         public readonly float Value;

@@ -28,10 +28,10 @@ namespace AnimationExpression.Data
         public List<Variable> Variables;
         public string Expression;
 
-        public void Run(IMapper target)
+        public void Run(IMapper target, Action callback = null)
         {
             var program = Compile();
-            var ctx = new Context(this, target);
+            var ctx = new Context(this, target, callback);
             program.Evaluate(ctx);
         }
 
@@ -44,11 +44,13 @@ namespace AnimationExpression.Data
         {
             public readonly AnimationExpression Self;
             public readonly IMapper Target;
+            public readonly Action CallbackAction;
 
-            public Context(AnimationExpression self, IMapper target)
+            public Context(AnimationExpression self, IMapper target, Action callback)
             {
                 Self = self;
                 Target = target;
+                CallbackAction = callback;
             }
 
             public override GameObject ResolveGameObject(string name)
@@ -65,6 +67,11 @@ namespace AnimationExpression.Data
             public override float ResolveVariable(string name)
             {
                 return Self.Variables.FirstOrDefault(_ => _.Name == name)?.Value ?? 0f;
+            }
+
+            public override void Callback()
+            {
+                CallbackAction?.Invoke();
             }
         }
     }

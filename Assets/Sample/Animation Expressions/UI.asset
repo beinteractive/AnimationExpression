@@ -22,5 +22,5 @@ MonoBehaviour:
     Value: 1
   Expression: "Active(CancelButton, false);\n\nY(OkButton, Duration).FromRelative(-100f).EaseOutQuart().Animate(Animate);\nScale(OkButton,
     Duration).From(0f).Animate(Animate).EaseOutBack().Then({\n  Active(CancelButton,
-    true);\n  if (Flag) {\n    Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f).Animate(Animate);\n 
-    }\n});"
+    true);\n  if (Flag) {\n    Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f).Animate(Animate).Then(\n       
+    Callback();\n    );\n  }\n});"

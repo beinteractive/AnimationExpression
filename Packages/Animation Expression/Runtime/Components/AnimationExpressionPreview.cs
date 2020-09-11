@@ -15,7 +15,7 @@ namespace AnimationExpression.Components
                 return;
             }
             
-            AnimationExpression.Run(LiveTarget);
+            AnimationExpression.Run(LiveTarget, () => Debug.Log("Callback"));
         }
     }
 }
