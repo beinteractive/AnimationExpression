@@ -25,8 +25,9 @@ namespace AnimationExpression.Editor
                 EditorGUILayout.PropertyField(SerializedObject.FindProperty(nameof(Asset.Variables)));
             
                 EditorGUILayout.LabelField("Expression");
-            
-                Asset.Expression = EditorGUILayout.TextArea(Asset.Expression, GUILayout.Height(120f));
+
+                var expressionProperty = SerializedObject.FindProperty(nameof(Asset.Expression));
+                expressionProperty.stringValue = EditorGUILayout.TextArea(expressionProperty.stringValue, GUILayout.Height(120f));
 
                 SerializedObject.ApplyModifiedProperties();
             }
