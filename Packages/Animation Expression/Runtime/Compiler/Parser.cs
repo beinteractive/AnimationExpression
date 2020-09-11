@@ -17,7 +17,27 @@ namespace AnimationExpression.Compiler
         
         private Token NextToken()
         {
-            return Token = Scanner.GetToken();
+            Token = Scanner.GetToken();
+
+            /*
+            switch (Token)
+            {
+                case Symbol s:
+                    Debug.Log($"Symbol {s.Value}");
+                    break;
+                case Operator o:
+                    Debug.Log($"Operator {o.Value}");
+                    break;
+                case Identifier id:
+                    Debug.Log($"Identifier {id.Value}");
+                    break;
+                case Number n:
+                    Debug.Log($"Number {n.Value}");
+                    break;
+            }
+            */
+
+            return Token;
         }
 
         private void Initialize()
@@ -153,8 +173,6 @@ namespace AnimationExpression.Compiler
                 }
                 
                 nodes.Add(ParseStatement());
-
-                break;
             }
             
             return new Statements(nodes);
@@ -367,6 +385,11 @@ namespace AnimationExpression.Compiler
                     {
                         var args = ParseArguments();
                         t = new CallTween(v.Value, args);
+                    }
+                    else if (v.Value == "Active")
+                    {
+                        var args = ParseArguments();
+                        return new SetActive(args);
                     }
                     else
                     {

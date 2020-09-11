@@ -779,6 +779,34 @@ namespace AnimationExpression.Data
         }
     }
 
+    public class SetActive : ExpressionNode
+    {
+        public readonly Arguments Args;
+
+        public SetActive(Arguments args)
+        {
+            Args = args;
+        }
+
+        public override void Evaluate(EvaluateContext ctx)
+        {
+            var g = ((Variable) Args.Args[0]).GetGameObject(ctx);
+            var active = Args.Args[1].EvaluateAsBool(ctx);
+            
+            g.SetActive(active);
+        }
+
+        public override float EvaluateAsNumber(EvaluateContext ctx)
+        {
+            return 0f;
+        }
+
+        public override bool EvaluateAsBool(EvaluateContext ctx)
+        {
+            return true;
+        }
+    }
+
     public class ConstantNumber : ExpressionNode
     {
         public readonly float Value;

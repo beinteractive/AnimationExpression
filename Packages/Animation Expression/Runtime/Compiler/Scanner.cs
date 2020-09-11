@@ -98,6 +98,10 @@ namespace AnimationExpression.Compiler
 				{
 					case "if":
 						return new Symbol('I');
+					case "true":
+						return new Number(1f);
+					case "false":
+						return new Number(0f);
 					default:
 						return new Identifier(val);
 				}
