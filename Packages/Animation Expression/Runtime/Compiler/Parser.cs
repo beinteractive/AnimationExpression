@@ -446,6 +446,12 @@ namespace AnimationExpression.Compiler
                                         t = new Delay(t, args);
                                         break;
                                     }
+
+                                    case "Animate":
+                                    {
+                                        t = new Animate(t, args);
+                                        break;
+                                    }
                                 
                                     case string name when name.StartsWith("Ease"):
                                     {

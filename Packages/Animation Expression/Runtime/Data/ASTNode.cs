@@ -760,6 +760,25 @@ namespace AnimationExpression.Data
         }
     }
 
+    public class Animate : TweenNode
+    {
+        public readonly TweenNode Expr;
+        public readonly Arguments Args;
+
+        public Animate(TweenNode expr, Arguments args)
+        {
+            Expr = expr;
+            Args = args;
+        }
+
+        public override Tween EvaluateAsTween(EvaluateContext ctx)
+        {
+            var tween = Expr.EvaluateAsTween(ctx);
+            tween.Animate(Args.Args[0].EvaluateAsBool(ctx));
+            return tween;
+        }
+    }
+
     public class Then : TweenNode
     {
         public readonly TweenNode Expr;
