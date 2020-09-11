@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b153256da75e494099e63c2dfde72074, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  ObjectMaps: []
+  Variables:
+  - Name: Duration
+    Value: 0.5
+  - Name: Flag
+    Value: 1
+  Expression: "Scale(OkButton, Duration).From(0f).EaseOutBack();\nif (Flag) {\n 
+    Scale(CancelButton, Duration).From(0f).EaseOutBack().Delay(0.15f);\n}"

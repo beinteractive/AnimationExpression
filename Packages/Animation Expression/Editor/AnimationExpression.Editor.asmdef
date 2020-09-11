@@ -1,0 +1,18 @@
+{
+    "name": "AnimationExpression.Editor",
+    "references": [
+        "GUID:214f88224f4ec4378b0468e268e6049a",
+        "GUID:f48a88687021943959a850c81ac6e5b5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

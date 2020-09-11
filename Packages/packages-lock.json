@@ -63,6 +63,12 @@
       "dependencies": {},
       "hash": "dcbe64899d54fbc33b5ec40b770164c8ac90800f"
     },
+    "jp.beinteractive.animation-expression": {
+      "version": "file:Animation Expression",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "jp.beinteractive.uween": {
       "version": "file:Uween",
       "depth": 0,

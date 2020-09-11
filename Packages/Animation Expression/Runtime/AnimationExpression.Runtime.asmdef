@@ -1,0 +1,16 @@
+{
+    "name": "AnimationExpression.Runtime",
+    "references": [
+        "GUID:5079dc06f82a840cebe1fdd04122a908",
+        "GUID:f48a88687021943959a850c81ac6e5b5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
