@@ -61,7 +61,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "6f413c6b95fd041562a346c88568d672bf3b0109"
+      "hash": "dcbe64899d54fbc33b5ec40b770164c8ac90800f"
     },
     "jp.beinteractive.uween": {
       "version": "file:Uween",
