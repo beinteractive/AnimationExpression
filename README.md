@@ -5,7 +5,7 @@ Create animation script asset without compile
 ## Install
 
 Add a following git url on Unity Package Manager:
- - `https://git@github.com/beinteractive/AnimationExpression.git?path=Packages/AnimationExpression`
+ - `https://git@github.com/beinteractive/AnimationExpression.git?path=Packages/Animation%20Expression`
  
 Add following packages:
  - Uween: https://github.com/beinteractive/Uween/tree/v2
