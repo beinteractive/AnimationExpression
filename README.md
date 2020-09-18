@@ -8,7 +8,7 @@ Add a following git url on Unity Package Manager:
  - `https://git@github.com/beinteractive/AnimationExpression.git?path=Packages/Animation%20Expression`
  
 Add following packages:
- - Uween: https://github.com/beinteractive/Uween/tree/v2
+ - Uween: `https://git@github.com/beinteractive/Uween.git#v2` (https://github.com/beinteractive/Uween/tree/v2)
  - AnKuchen: https://github.com/kyubuns/AnKuchen
 
 ## How to use
